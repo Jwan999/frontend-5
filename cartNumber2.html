@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+
+<div id="app">
+
+    <input v-on:keyup.enter="addItems()" v-model="title" class="border border-black" placeholder="items" type="text">
+
+    <div>
+        <button @click="changeQty('+')" class="bg-black text-white">
+            +
+        </button>
+        <input v-model="qty" class="border border-black" type="text">
+        <button @click="changeQty('-')" class="bg-black text-white">
+            -
+        </button>
+    </div>
+
+    <button @click="addItems" class="mb-10 mt-2 bg-black text-white">ADD</button>
+
+
+    <div>
+        <ol v-for="(item,index) in items">
+            <li>{{item.title}} - {{item.qty}} index: {{index}}</li>
+        </ol>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            title: '',
+            qty: 1,
+            items: []
+        },
+        methods: {
+            addItems() {
+                let item = {
+                    title: this.title,
+                    qty: this.qty,
+                }
+                this.items.push(item)
+            },
+            changeQty(operation) {
+                if (operation == '-' && this.qty > 1) {
+                    // this.qty == 1 ? this.qty = 1 : this.qty --
+                    this.qty--
+                } else if (operation == '+') {
+                    this.qty++
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

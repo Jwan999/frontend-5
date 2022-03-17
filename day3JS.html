@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <input v-model="student.name" type="text" placeholder="Name">
+    <input v-model="student.age" type="text" placeholder="Age">
+
+    <h1>Name: {{student.name}}</h1>
+    <h1>Age: {{student.age}}</h1>
+    <button @click="addFruits">
+        add fruit
+    </button>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            fruits: [],
+            student: {
+                name: '',
+                age: '',
+            }
+        },
+        methods: {
+            addFruits() {
+                let fruit = 'apple'
+                this.fruits.push(fruit)
+            },
+        }
+    })
+
+</script>
+
+<!--<script>-->
+<!--    // let blackColor = false-->
+<!--    //-->
+<!--    // function afterClicked() {-->
+<!--    //     if (blackColor) {-->
+<!--    //         blackColor = !blackColor-->
+<!--    //         document.querySelector('.text-sm').style.color = 'blue'-->
+<!--    //     } else {-->
+<!--    //         blackColor = !blackColor-->
+<!--    //         document.querySelector('.text-sm').style.color = 'black'-->
+<!--    //     }-->
+<!--    // }-->
+
+<!--    // greeting = 'goodbye'-->
+<!--    //     console.log(greeting)-->
+<!--    // let search = 'app'-->
+<!--    // let fruits = ['apple', 'orange', 'pineapple']-->
+<!--    //-->
+<!--    // let results = fruits.filter(fruit => {-->
+<!--    //     return fruit.length <= 6-->
+<!--    // })-->
+<!--    //-->
+<!--    // console.log(results)-->
+
+
+<!--    // fruits.forEach(function (fruit) {-->
+<!--    //     console.log(fruit)-->
+<!--    // })-->
+<!--    // arrow function-->
+<!--    // fruits.forEach(fruit => {-->
+<!--    //     console.log(fruit)-->
+<!--    // })-->
+<!--    // fruits.forEach(fruit => console.log(fruit))-->
+
+
+<!--    // for (let i = 0; i < fruits.length; i++) {-->
+<!--    //   console.log(fruits[i])-->
+<!--    // }-->
+<!--    // for (let fruit of fruits) {-->
+<!--    //     console.log(fruit)-->
+<!--    // }-->
+
+<!--    // let i = 0-->
+<!--    // while (i < fruits.length) {-->
+<!--    //     console.log(fruits[i])-->
+<!--    //     i++-->
+<!--    // }-->
+
+<!--    // function combine(number1, number2){-->
+<!--    //     return number1 + number2-->
+<!--    // }-->
+
+<!--    //        combine(5,6)-->
+
+<!--</script>-->
+</body>
+</html>

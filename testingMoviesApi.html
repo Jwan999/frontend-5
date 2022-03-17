@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trending Movies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-zinc-900 font-mono">
+<div id="app">
+    <h1 class="text-center font-bold text-yellow-500 text-2xl my-10">Trending Movies</h1>
+    <div class="grid lg:grid-cols-4 grid-cols-1 gap-8 mx-10">
+        <div v-for="movie in movies" class="bg-zinc-800 rounded shadow-lg">
+            <img class="w-full bg-cover" :src="'https://image.tmdb.org/t/p/w500'+movie.poster_path" alt="">
+            <div class="text-gray-300 m-4">
+                <h1 class="text-lg font-bold mb-2">{{movie.title}}</h1>
+
+<!--                <span v-if="genre" v-for="genre in getGenresNames(movie.genre_ids)"-->
+<!--                      class="mr-1 rounded-full bg-yellow-500 p-1 px-2 font-mono text-sm text-black font-bold">-->
+
+<!--                    {{genre.name}}-->
+<!--                </span>-->
+
+
+                <p class="text-sm mt-6 text-justify">{{movie.overview}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--e6c02eff135212384cf3ef9f1d9a34c4-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            api_key: 'e6c02eff135212384cf3ef9f1d9a34c4',
+            genres: [],
+            movies: [],
+        },
+        methods: {
+            getGenresNames(ids) {
+                return ids.map(id => this.genres.find(genre => genre.id == id))
+            },
+            getMovies() {
+                axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=e6c02eff135212384cf3ef9f1d9a34c4&language=en-US\n').then(response => {
+                    this.genres = response.data.genres
+                    // console.log(this.genres)
+
+                })
+                axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${this.api_key}`).then(response => {
+                    // console.log(response.data.results)
+                    this.movies = response.data.results
+                })
+            }
+        },
+
+        mounted() {
+            this.getMovies();
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-zinc-900 font-mono">
+<div id="app">
+    <h1 class="text-yellow-500 text-2xl font-bold text-center my-10">Trending movies</h1>
+    <div v-if="movie.original_title" class="text-white text-3xl">
+        {{movie.original_title}}
+    </div>
+    <div v-else class="grid lg:grid-cols-4 grid-cols-1 gap-8">
+    <div @click="changeBackground(movie.id); showMovie(movie.id)" v-for="movie in movies"
+         v-bind:class=" clickedMovies.includes(movie.id)  ? 'bg-blue-500' : 'bg-zinc-700'"
+         class="rounded text-white">
+        <img class="w-full object-cover" v-bind:src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" v-bind:alt="movie.title">
+        <div class="p-4">
+            <h1 class="font-bold text-xl">{{movie.title}}</h1>
+            <p class="text-sm text-gray-300">{{movie.overview}}</p>
+        </div>
+    </div>
+
+
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            movies: [],
+            apiKey: 'e6c02eff135212384cf3ef9f1d9a34c4',
+            clickedMovies: [],
+            movie: {}
+        },
+        methods: {
+            getMovies() {
+                // 'string'+name of varable
+                axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${this.apiKey}`).then(response => {
+                    this.movies = response.data.results
+                    // console.log(response.data.results)
+                })
+            },
+            changeBackground(movieID) {
+                if (this.clickedMovies.includes(movieID)) {
+                    let index = this.clickedMovies.indexOf(movieID)
+                    this.clickedMovies.splice(index, 1)
+                } else {
+                    this.clickedMovies.push(movieID)
+                    // console.log(movieID)
+                }
+
+            },
+            showMovie(movieID) {
+                axios.get(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${this.apiKey}`).then(response => {
+                    this.movie = response.data
+                    // console.log(response.data)
+                })
+            }
+        },
+        mounted() {
+            this.getMovies();
+
+        },
+
+    })
+</script>
+
+</body>
+</html>

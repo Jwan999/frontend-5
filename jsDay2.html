@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Day 2 JS</title>
+</head>
+<body>
+
+
+<script>
+
+
+    let email = 'jwan@gmail.com'
+    email = email.toUpperCase()
+    // console.log(email)
+    // if (email.endsWith("@gmail.com") || email.endsWith("@outlook.com")) {
+    //     console.log('this email is correct')
+    // } else {
+    //     console.log('this email is incorrect')
+    // }
+
+    // ternary operator
+    // condition ? if condition is true do this : if condition is false do this
+    email.endsWith("@gmail.com") || email.endsWith("@outlook.com") ? console.log('correct') : console.log('incorrect')
+
+    let fruits = ['apple', 'strawberry', 'banana']
+
+    for (let fruit of fruits) {
+        console.log(fruit)
+    }
+
+    // fruits.unshift('orange')
+    // fruits.push('orange')
+    // fruits.pop()
+    // fruits.shift()
+    // console.log(fruits.indexOf('apple'))
+
+
+    let students = [
+        {
+            name: 'jwan',
+            job: 'progammer',
+        },
+        {
+            name: 'sara',
+            job: 'social media',
+        }
+    ]
+
+    // for (let i = 0; i < students.length; i++) {
+    //     console.log('Name: ' + students[i].name, 'Job: ' + students[i].job)
+    // }
+
+
+    // console.log(fruits[0], fruits[1], fruits[2])
+    // console.log(fruits)
+</script>
+
+<!--<script>-->
+<!--    // &&-->
+<!--    // ||-->
+<!--    // <=-->
+<!--    // ==-->
+<!--    // ===-->
+<!--    // let age = 12-->
+
+<!--    // 12 === 13 ? console.log('yes') : console.log('no')-->
+
+<!--    for (let i = 0; i <= 100; i++) {-->
+<!--        if (i % 3 == 0 && i % 5 == 0) {-->
+<!--            console.log('fizzbuzz', i)-->
+<!--        } else if (i % 5 == 0) {-->
+<!--            console.log('buzz', i)-->
+<!--        } else if (i % 3 == 0) {-->
+<!--            console.log('fizz', i)-->
+<!--        } else {-->
+<!--            console.log(i)-->
+<!--        }-->
+<!--    }-->
+
+<!--</script>-->
+</body>
+</html>

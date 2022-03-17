@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200">
+<div id="app">
+    <div class="flex justify-center mt-10">
+        <div class="lg:w-5/12 w-11/12">
+            <div class="flex space-x-2">
+                <input @keyup.enter="addItems()" v-model="title"
+                       class="px-2 py-3 outline-none border border-yellow-500 rounded w-full"
+                       type="text"
+                       placeholder="item">
+
+                <div class="flex space-x-1">
+                    <button @click="changeQty('-')" class="w-10 bg-blue-500 rounded text-white">-</button>
+                    <input disabled v-model="qty" class="rounded w-10 outline-none text-center text-lg"
+                           type="text">
+                    <button @click="changeQty('+')" class="w-10 bg-blue-500 rounded text-white">+</button>
+                </div>
+            </div>
+            <div class="flex justify-end mt-2">
+                <button @click="addItems()" class="w-24 bg-yellow-500 py-3 rounded font-bold">
+                    ADD
+                </button>
+            </div>
+
+            <div class="space-y-3" v-if="items.length != 0">
+                <h1 class="text-2xl text-blue-500">Items</h1>
+                <div v-for="item in items" class="flex justify-between border-b border-blue-500 w-full">
+                    <div>
+                        <h1 class=" text-xl">{{item.title}}</h1>
+                    </div>
+                    <div>
+                        <h1 class=" text-xl">{{item.qty}}</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            title: '',
+            qty: 1, 
+            items: []
+        },
+        methods: {
+            addItems() {
+                if (this.title == '') {
+                    alert('make sure to add an item')
+                } else {
+                    item = {
+                        title: this.title,
+                        qty: this.qty,
+                    }
+                    this.items.push(item)
+                    this.title = ''
+                    this.qty = 1
+                }
+
+            },
+            changeQty(operation) {
+                if (operation == '-') {
+                    this.qty == 1 ? this.qty = 1 : this.qty--
+                } else {
+                    this.qty++
+
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
